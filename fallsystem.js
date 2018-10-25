@@ -26,16 +26,6 @@ class fallSystem
         }
 
         this.fallItemsLength=this.fallItems.length;
-
-        two.bind("update",()=>{
-            for (var x=0,l=this.fallItemsLength;x<l;x++)
-            {
-                this.fallItems[x].updateSelf();
-            }
-        });
-
-        two.update();
-        two.play();
     }
 
     //toggle play state of given two system
@@ -49,6 +39,14 @@ class fallSystem
         else
         {
             this.two.pause();
+        }
+    }
+
+    update()
+    {
+        for (var x=0,l=this.fallItemsLength;x<l;x++)
+        {
+            this.fallItems[x].updateSelf();
         }
     }
 

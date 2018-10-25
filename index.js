@@ -31,15 +31,22 @@ function main()
         }
     ]);
 
-    _rainsystem=new fallSystem(two,[{
-        particle:Rain,
-        particleOptions:{
-            xSpawnRange:[-300,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10
-        },
-        particleAmount:100
-    }]);
+    // _rainsystem=new fallSystem(two,[{
+    //     particle:Rain,
+    //     particleOptions:{
+    //         xSpawnRange:[-300,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10
+    //     },
+    //     particleAmount:100
+    // }]);
+
+    two.bind("update",()=>{
+        _snowsystem.update();
+        // _rainsystem.update();
+    });
+
+    two.play();
 }
 
 //random, inclusive
