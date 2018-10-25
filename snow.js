@@ -57,7 +57,7 @@ class Snow
 }
 
 var snowDefaults={
-    shape:squareSnow, //function that produces shape to use
+    shape:squareSnow, //function that produces a shape to use
     ySpawnRange:[-800,0], //y range particle can spawn in
     xSpawnRange:[0,400], //x range particle can spawn in
     fallSpeedRange:[.5,1.2], //range of fall speeds

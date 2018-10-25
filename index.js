@@ -1,44 +1,53 @@
 window.onload=main;
 
+var two;
+
 function main()
 {
     var iwidth=800;
     var iheight=600;
-    var two=new Two({width:iwidth,height:iheight,type:Two.Types.canvas}).appendTo(document.querySelector(".game"));
+    two=new Two({width:iwidth,height:iheight,type:Two.Types.canvas}).appendTo(document.querySelector(".game"));
 
     var background=two.makeRectangle(iwidth/2,iheight/2,iwidth+50,iheight+50);
     background.fill="#3d3a46";
 
     var fallItems=[];
 
+    var rainSpriteShape=rainSprite();
     for (var x=0;x<100;x++)
     {
-        fallItems.push(new Leaf(two,{
-            xSpawnRange:[0,iwidth],
+        fallItems.push(new Rain(two,{
+            xSpawnRange:[-300,iwidth],
             ySpawnRange:[-iheight*2,-10],
             respawnHeight:iheight+10,
-            fallSpeedRange:[2,5]
+            fallSpeedRange:[12,15],
+            driftVariation:[10,10],
+            maxDrift:5,
+            driftPerFrames:[0,0],
+            shape:()=>{
+                return rainSprite(2,randint(10,15),randint(10,15));
+            }
         }));
     }
 
-    for (var x=0;x<100;x++)
-    {
-        fallItems.push(new Snow(two,{
-            xSpawnRange:[0,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10
-        }));
-    }
+    // for (var x=0;x<100;x++)
+    // {
+    //     fallItems.push(new Snow(two,{
+    //         xSpawnRange:[0,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10
+    //     }));
+    // }
 
-    for (var x=0;x<50;x++)
-    {
-        fallItems.push(new Snow(two,{
-            xSpawnRange:[0,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10,
-            shape:crossSnow
-        }));
-    }
+    // for (var x=0;x<50;x++)
+    // {
+    //     fallItems.push(new Snow(two,{
+    //         xSpawnRange:[0,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10,
+    //         shape:crossSnow
+    //     }));
+    // }
 
     two.bind("update",()=>{
         for (var x=0,l=fallItems.length;x<l;x++)
