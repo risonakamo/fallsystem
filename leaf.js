@@ -4,9 +4,9 @@ class Leaf extends Snow
     {
         super(two,options);
 
-        this.yForces=[-.005,.01];
-        this.yAccels=[-.02,.09]; //negative acceleration, positive acceleration
-        this.speedCutoff=[-1,1.9]; //[negative speed before flipping, positive speed before flipping]
+        this.yForces=[-.005,.005];
+        this.yAccels=[-.05,.09]; //negative acceleration, positive acceleration
+        this.speedCutoff=[-.7,1.4]; //[negative speed before flipping, positive speed before flipping]
 
         this.fallSpeed=0;
         this.yAccel=0;
@@ -23,7 +23,7 @@ class Leaf extends Snow
 
         if (this.yAccel>this.yAccels[1])
         {
-            this.yAccel=this.yAccel[1];
+            this.yAccel=this.yAccels[1];
         }
 
         else if (this.yAccel<this.yAccels[0])
