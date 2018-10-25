@@ -6,11 +6,17 @@ class Leaf extends Snow
 
         this.yForces=[-.005,.005];
         this.yAccels=[-.05,.09]; //negative acceleration, positive acceleration
-        this.speedCutoff=[-.7,1.4]; //[negative speed before flipping, positive speed before flipping]
+        this.speedCutoff=[-.19,2.8]; //[negative speed before flipping, positive speed before flipping]
 
         this.fallSpeed=0;
         this.yAccel=0;
         this.yForce=this.yForces[1];
+
+        this.xSpeeds=[-4,4];
+        this.xAccels=[-.1,.1];
+
+        this.xSpeed=this.xSpeeds[1];
+        this.xAccel=this.xAccels[0];
 
         this.multiplier=2;
     }
@@ -31,14 +37,27 @@ class Leaf extends Snow
             this.yAccel=this.yAccels[0];
         }
 
-        if (this.fallSpeed<this.speedCutoff[0]*this.multiplier)
+        if (this.fallSpeed<this.speedCutoff[0])
         {
             this.yForce=this.yForces[1];
         }
 
-        else if (this.fallSpeed>this.speedCutoff[1]*this.multiplier)
+        else if (this.fallSpeed>this.speedCutoff[1])
         {
             this.yForce=this.yForces[0];
+        }
+
+        this.theShape.translation.x+=this.xSpeed;
+        this.xSpeed+=this.xAccel;
+
+        if (this.xSpeed<this.xSpeeds[0])
+        {
+            this.xAccel=this.xAccels[1];
+        }
+
+        else if (this.xSpeed>this.xSpeeds[1])
+        {
+            this.xAccel=this.xAccels[0];
         }
     }
 }
