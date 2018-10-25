@@ -50,6 +50,8 @@ class fallSystem
     //frame update
     update()
     {
+        //also during this loop, check if all particles report dead
+        var allDead;
         for (var x=0;x<this.fallItems.length;x++)
         {
             if (this.fallItemDisable[x])
@@ -57,9 +59,21 @@ class fallSystem
                 continue;
             }
 
+            allDead=1;
             for (var y=0;y<this.fallItems[x].length;y++)
             {
                 this.fallItems[x][y].updateSelf();
+
+                if (!this.fallItems[x][y].dead)
+                {
+                    allDead=0;
+                }
+            }
+
+            //if all particles are not moving, disable the group for speed
+            if (allDead)
+            {
+                this.fallItemDisable[x]=1;
             }
         }
     }
@@ -67,13 +81,14 @@ class fallSystem
     //flag all particles to not respawn for a certain particle system
     toggleRespawn(index)
     {
+        this.fallItemDisable[index]=0;
         for (var x=0;x<this.fallItems[index].length;x++)
         {
             this.fallItems[index][x].dontRespawn=this.fallItems[index][x].dontRespawn?0:1;
         }
     }
 
-    //pause all of a specified particle
+    //pause all of a specified particle (but does not enable respawn)
     toggleParticle(index)
     {
         this.fallItemDisable[index]=this.fallItemDisable[index]?0:1;

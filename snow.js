@@ -23,9 +23,11 @@ class Snow
     {
         if (this.dontRespawn && this.theShape.translation.y<0)
         {
+            this.dead=1;
             return;
         }
 
+        this.dead=0;
         this.theShape.translation.y+=this.fallSpeed;
         this.theShape.translation.x+=this.xSpeed;
 
