@@ -13,22 +13,32 @@ function main()
 
     for (var x=0;x<100;x++)
     {
-        fallItems.push(new Snow(two,{
-            xSpawnRange:[0,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10
-        }));
-    }
-
-    for (var x=0;x<50;x++)
-    {
-        fallItems.push(new Snow(two,{
+        fallItems.push(new Leaf(two,{
             xSpawnRange:[0,iwidth],
             ySpawnRange:[-iheight*2,-10],
             respawnHeight:iheight+10,
-            shape:crossSnow
+            fallSpeedRange:[2,5]
         }));
     }
+
+    // for (var x=0;x<100;x++)
+    // {
+    //     fallItems.push(new Snow(two,{
+    //         xSpawnRange:[0,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10
+    //     }));
+    // }
+
+    // for (var x=0;x<50;x++)
+    // {
+    //     fallItems.push(new Snow(two,{
+    //         xSpawnRange:[0,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10,
+    //         shape:crossSnow
+    //     }));
+    // }
 
     two.bind("update",()=>{
         for (var x=0,l=fallItems.length;x<l;x++)
