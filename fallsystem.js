@@ -14,18 +14,23 @@ class fallSystem
         this.two=two;
 
         this.fallItems=[];
+        this.fallItemDisable={};
 
         var currentParticle;
+        var fallItemArray;
         for (var x=0;x<particles.length;x++)
         {
+            this.fallItemDisable[x]=0;
             currentParticle=particles[x];
+            fallItemArray=[];
+
             for (var y=0;y<currentParticle.particleAmount;y++)
             {
-                this.fallItems.push(new currentParticle.particle(two,currentParticle.particleOptions));
+                fallItemArray.push(new currentParticle.particle(two,currentParticle.particleOptions));
             }
-        }
 
-        this.fallItemsLength=this.fallItems.length;
+            this.fallItems.push(fallItemArray);
+        }
     }
 
     //toggle play state of given two system
@@ -42,20 +47,35 @@ class fallSystem
         }
     }
 
+    //frame update
     update()
     {
-        for (var x=0,l=this.fallItemsLength;x<l;x++)
+        for (var x=0;x<this.fallItems.length;x++)
         {
-            this.fallItems[x].updateSelf();
+            if (this.fallItemDisable[x])
+            {
+                continue;
+            }
+
+            for (var y=0;y<this.fallItems[x].length;y++)
+            {
+                this.fallItems[x][y].updateSelf();
+            }
         }
     }
 
-    //flag all particles to not respawn
-    toggleRespawn()
+    //flag all particles to not respawn for a certain particle system
+    toggleRespawn(index)
     {
-        for (var x=0;x<this.fallItemsLength;x++)
+        for (var x=0;x<this.fallItems[index].length;x++)
         {
-            this.fallItems[x].dontRespawn=this.fallItems[x].dontRespawn?0:1;
+            this.fallItems[index][x].dontRespawn=this.fallItems[index][x].dontRespawn?0:1;
         }
+    }
+
+    //pause all of a specified particle
+    toggleParticle(index)
+    {
+        this.fallItemDisable[index]=this.fallItemDisable[index]?0:1;
     }
 }

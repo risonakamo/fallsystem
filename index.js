@@ -27,17 +27,19 @@ function main()
             particle:Snow,
             particleOptions:{...sampleOptions,shape:crossSnow},
             particleAmount:50
+        },
+        {
+            particle:Rain,
+            particleOptions:{
+                xSpawnRange:[-300,iwidth],
+                ySpawnRange:[-iheight*2,-10],
+                respawnHeight:iheight+10
+            },
+            particleAmount:100
         }
-        // {
-        //     particle:Rain,
-        //     particleOptions:{
-        //         xSpawnRange:[-300,iwidth],
-        //         ySpawnRange:[-iheight*2,-10],
-        //         respawnHeight:iheight+10
-        //     },
-        //     particleAmount:100
-        // }
     ]);
+
+    _stormsystem.toggleRespawn(2);
 
     two.bind("update",()=>{
         _stormsystem.update();
