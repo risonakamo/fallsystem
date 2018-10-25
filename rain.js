@@ -7,7 +7,7 @@ class Rain extends Snow
 }
 
 var rainDefaults={
-    xSpawnRange:[-300,400],
+    xSpawnOffset:[-300,0],
     fallSpeedRange:[12,15],
     driftVariation:[4,5],
     maxDrift:5,

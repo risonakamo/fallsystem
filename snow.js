@@ -7,6 +7,7 @@ class Snow
     constructor(two,options={})
     {
         this.options={...snowDefaults,...options};
+        this.two=two;
 
         this.theShape=this.options.shape();
         two.add(this.theShape);
@@ -48,7 +49,7 @@ class Snow
             }
         }
 
-        if (this.theShape.translation.y>=this.options.respawnHeight)
+        if (this.theShape.translation.y>=this.two.height+this.options.respawnOffset)
         {
             this.respawn();
         }
@@ -56,7 +57,10 @@ class Snow
 
     respawn()
     {
-        this.theShape.translation.set(randint(this.options.xSpawnRange[0],this.options.xSpawnRange[1]),randint(this.options.ySpawnRange[0],this.options.ySpawnRange[1]));
+        this.theShape.translation.set(
+            randint(this.options.xSpawnOffset[0],this.two.width+this.options.xSpawnOffset[1]),
+            randint(-this.two.height*2,-1)
+        );
         this.fallSpeed=randfloat(this.options.fallSpeedRange[0],this.options.fallSpeedRange[1]);
         this.theShape.scale=randfloat(this.options.scaleRange[0],this.options.scaleRange[1]);
         this.theShape.opacity=randfloat(this.options.opacityRange[0],this.options.opacityRange[0]);
@@ -65,12 +69,11 @@ class Snow
 
 var snowDefaults={
     shape:squareSnow, //function that produces a shape to use
-    ySpawnRange:[-800,0], //y range particle can spawn in
-    xSpawnRange:[0,400], //x range particle can spawn in
+    xSpawnOffset:[0,0], //offsets to X spawn
     fallSpeedRange:[.5,1.2], //range of fall speeds
     scaleRange:[.5,1], //range item will be scaled to
     opacityRange:[.5,1], //range item might be opacity-fied
-    respawnHeight:410, //height at which item respawns at top
+    respawnOffset:10, //height beyond the bottom of the canvas where particle should despawn
     maxDrift:.6, //maximum X drift speed before getting cut
     driftVariation:[-.1,.1], //possible acceleration range of drift
     driftPerFrames:[1,3] //perform drift every this range of frames, randomised
