@@ -21,6 +21,16 @@ class Snow
 
     updateSelf()
     {
+        if (this.dead)
+        {
+            if (!this.dontRespawn)
+            {
+                this.dead=0;
+            }
+
+            return;
+        }
+
         this.theShape.translation.y+=this.fallSpeed;
         this.theShape.translation.x+=this.xSpeed;
 
@@ -43,6 +53,11 @@ class Snow
 
         if (this.theShape.translation.y>=this.options.respawnHeight)
         {
+            if (this.dontRespawn)
+            {
+                this.dead=1;
+            }
+
             this.respawn();
         }
     }

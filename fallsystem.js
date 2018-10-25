@@ -38,6 +38,7 @@ class fallSystem
         two.play();
     }
 
+    //toggle play state of given two system
     playPause()
     {
         if (!this.two.playing)
@@ -48,6 +49,15 @@ class fallSystem
         else
         {
             this.two.pause();
+        }
+    }
+
+    //flag all particles to not respawn
+    toggleRespawn()
+    {
+        for (var x=0;x<this.fallItemsLength;x++)
+        {
+            this.fallItems[x].dontRespawn=this.fallItems[x].dontRespawn?0:1;
         }
     }
 }

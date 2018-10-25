@@ -1,6 +1,7 @@
 window.onload=main;
 
-var _mainFallSystem;
+var _snowsystem;
+var _rainsystem;
 
 function main()
 {
@@ -17,7 +18,7 @@ function main()
         respawnHeight:iheight+10
     }
 
-    _mainFallSystem=new fallSystem(two,[
+    _snowsystem=new fallSystem(two,[
         {
             particle:Snow,
             particleOptions:sampleOptions,
@@ -30,14 +31,15 @@ function main()
         }
     ]);
 
-    // for (var x=0;x<100;x++)
-    // {
-    //     fallItems.push(new Rain(two,{
-    //         xSpawnRange:[-300,iwidth],
-    //         ySpawnRange:[-iheight*2,-10],
-    //         respawnHeight:iheight+10
-    //     }));
-    // }
+    _rainsystem=new fallSystem(two,[{
+        particle:Rain,
+        particleOptions:{
+            xSpawnRange:[-300,iwidth],
+            ySpawnRange:[-iheight*2,-10],
+            respawnHeight:iheight+10
+        },
+        particleAmount:100
+    }]);
 }
 
 //random, inclusive
