@@ -1,56 +1,43 @@
 window.onload=main;
 
-var two;
+var _mainFallSystem;
 
 function main()
 {
     var iwidth=800;
     var iheight=600;
-    two=new Two({width:iwidth,height:iheight,type:Two.Types.canvas}).appendTo(document.querySelector(".game"));
+    var two=new Two({width:iwidth,height:iheight,type:Two.Types.canvas}).appendTo(document.querySelector(".game"));
 
     var background=two.makeRectangle(iwidth/2,iheight/2,iwidth+50,iheight+50);
     background.fill="#3d3a46";
 
-    var fallItems=[];
-
-    var rainSpriteShape=rainSprite();
-    for (var x=0;x<100;x++)
-    {
-        fallItems.push(new Rain(two,{
-            xSpawnRange:[-300,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10
-        }));
+    var sampleOptions={
+        xSpawnRange:[0,iwidth],
+        ySpawnRange:[-iheight*2,-10],
+        respawnHeight:iheight+10
     }
 
-    for (var x=0;x<100;x++)
-    {
-        fallItems.push(new Snow(two,{
-            xSpawnRange:[0,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10
-        }));
-    }
-
-    for (var x=0;x<50;x++)
-    {
-        fallItems.push(new Snow(two,{
-            xSpawnRange:[0,iwidth],
-            ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10,
-            shape:crossSnow
-        }));
-    }
-
-    two.bind("update",()=>{
-        for (var x=0,l=fallItems.length;x<l;x++)
+    _mainFallSystem=new fallSystem(two,[
         {
-            fallItems[x].updateSelf();
+            particle:Snow,
+            particleOptions:sampleOptions,
+            particleAmount:100
+        },
+        {
+            particle:Snow,
+            particleOptions:{...sampleOptions,shape:crossSnow},
+            particleAmount:50
         }
-    });
+    ]);
 
-    two.update();
-    two.play();
+    // for (var x=0;x<100;x++)
+    // {
+    //     fallItems.push(new Rain(two,{
+    //         xSpawnRange:[-300,iwidth],
+    //         ySpawnRange:[-iheight*2,-10],
+    //         respawnHeight:iheight+10
+    //     }));
+    // }
 }
 
 //random, inclusive
