@@ -83,7 +83,7 @@ var snowDefaults={
 function squareSnow(size=5)
 {
     var r=new Two.Rectangle(-10,-10,size,size);
-    r.fill="white";
+    r.fill="#ebebeb";
     r.stroke="transparent";
     return r;
 }
@@ -93,7 +93,7 @@ function crossSnow(width=4,height=8)
 {
     var g=new Two.Group();
     g.add(new Two.Rectangle(-10,-10,height,width),new Two.Rectangle(-10,-10,width,height));
-    g.fill="white";
+    g.fill="#ebebeb";
     g.stroke="transparent";
     return g;
 }

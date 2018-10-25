@@ -45,7 +45,7 @@ function rainSprite(swidth=2,sheight=15,segments=10)
     }
 
     g.add(...segs);
-    g.fill="white";
+    g.fill="#3d3a46";
     g.stroke="transparent";
 
     return g;
