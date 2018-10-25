@@ -88,7 +88,7 @@ class fallSystem
         }
     }
 
-    //pause all of a specified particle (but does not enable respawn)
+    //pause/play all of a specified particle (but does not enable respawn)
     toggleParticle(index)
     {
         this.fallItemDisable[index]=this.fallItemDisable[index]?0:1;
