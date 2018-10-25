@@ -1,17 +1,20 @@
-//Snow(Two two,Shape shape,int[] xSpawn,int[] ySpawn,int respawnY)
+/*Snow fall particle for use with mainFall.
+  Snow(Two two,Object options)
+  two: the two canvas
+  options: view docs or the snowDefaults for possible options*/
 class Snow
 {
-    constructor(two,shape,xSpawn,ySpawn,respawnY)
+    constructor(two,options={})
     {
-        this.respawnY=respawnY;
-        this.xSpawn=xSpawn;
-        this.ySpawn=ySpawn;
+        this.options={...snowDefaults,...options};
 
-        this.theShape=shape;
+        this.theShape=this.options.shape();
         two.add(this.theShape);
 
-        this.xAdjust=randint(1,3);
+        this.xAdjust=randint(this.options.driftPerFrames[0],this.options.driftPerFrames[1]);
         this.xSpeed=0;
+
+        this.halfDrift=this.options.maxDrift/2;
 
         this.respawn();
     }
@@ -24,21 +27,21 @@ class Snow
         this.xAdjust--;
         if (this.xAdjust<=0)
         {
-            this.xAdjust=randint(1,3);
-            this.xSpeed+=randfloat(-.1,.1);
+            this.xAdjust=randint(this.options.driftPerFrames[0],this.options.driftPerFrames[1]);
+            this.xSpeed+=randfloat(this.options.driftVariation[0],this.options.driftVariation[1]);
 
-            if (this.xSpeed>.6)
+            if (this.xSpeed>this.options.maxDrift)
             {
-                this.xSpeed=.3;
+                this.xSpeed=this.halfDrift;
             }
 
-            else if (this.xSpeed<-.6)
+            else if (this.xSpeed<-this.options.maxDrift)
             {
-                this.xSpeed=-.3;
+                this.xSpeed=-this.halfDrift;
             }
         }
 
-        if (this.theShape.translation.y>=this.respawnY)
+        if (this.theShape.translation.y>=this.options.respawnHeight)
         {
             this.respawn();
         }
@@ -46,12 +49,25 @@ class Snow
 
     respawn()
     {
-        this.theShape.translation.set(randint(this.xSpawn[0],this.xSpawn[1]),randint(this.ySpawn[0],this.ySpawn[1]));
-        this.fallSpeed=randfloat(.5,1.2);
-        this.theShape.scale=randfloat(.5,1);
-        this.theShape.opacity=randfloat(.5,1);
+        this.theShape.translation.set(randint(this.options.xSpawnRange[0],this.options.xSpawnRange[1]),randint(this.options.ySpawnRange[0],this.options.ySpawnRange[1]));
+        this.fallSpeed=randfloat(this.options.fallSpeedRange[0],this.options.fallSpeedRange[1]);
+        this.theShape.scale=randfloat(this.options.scaleRange[0],this.options.scaleRange[1]);
+        this.theShape.opacity=randfloat(this.options.opacityRange[0],this.options.opacityRange[0]);
     }
 }
+
+var snowDefaults={
+    shape:squareSnow, //function that produces shape to use
+    ySpawnRange:[-800,0], //y range particle can spawn in
+    xSpawnRange:[0,400], //x range particle can spawn in
+    fallSpeedRange:[.5,1.2], //range of fall speeds
+    scaleRange:[.5,1], //range item will be scaled to
+    opacityRange:[.5,1], //range item might be opacity-fied
+    respawnHeight:410, //height at which item respawns at top
+    maxDrift:.6, //maximum X drift speed before getting cut
+    driftVariation:[-.1,.1], //possible acceleration range of drift
+    driftPerFrames:[1,3] //perform drift every this range of frames, randomised
+};
 
 //returns rectangular snow two shape
 function squareSnow()
@@ -60,4 +76,14 @@ function squareSnow()
     r.fill="white";
     r.stroke="transparent";
     return r;
+}
+
+//returns cross shaped snow two shape
+function crossSnow()
+{
+    var g=new Two.Group();
+    g.add(new Two.Rectangle(-10,-10,8,4),new Two.Rectangle(-10,-10,4,8));
+    g.fill="white";
+    g.stroke="transparent";
+    return g;
 }
