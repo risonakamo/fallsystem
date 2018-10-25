@@ -19,35 +19,28 @@ function main()
         fallItems.push(new Rain(two,{
             xSpawnRange:[-300,iwidth],
             ySpawnRange:[-iheight*2,-10],
-            respawnHeight:iheight+10,
-            fallSpeedRange:[12,15],
-            driftVariation:[10,10],
-            maxDrift:5,
-            driftPerFrames:[0,0],
-            shape:()=>{
-                return rainSprite(2,randint(10,15),randint(10,15));
-            }
+            respawnHeight:iheight+10
         }));
     }
 
-    // for (var x=0;x<100;x++)
-    // {
-    //     fallItems.push(new Snow(two,{
-    //         xSpawnRange:[0,iwidth],
-    //         ySpawnRange:[-iheight*2,-10],
-    //         respawnHeight:iheight+10
-    //     }));
-    // }
+    for (var x=0;x<100;x++)
+    {
+        fallItems.push(new Snow(two,{
+            xSpawnRange:[0,iwidth],
+            ySpawnRange:[-iheight*2,-10],
+            respawnHeight:iheight+10
+        }));
+    }
 
-    // for (var x=0;x<50;x++)
-    // {
-    //     fallItems.push(new Snow(two,{
-    //         xSpawnRange:[0,iwidth],
-    //         ySpawnRange:[-iheight*2,-10],
-    //         respawnHeight:iheight+10,
-    //         shape:crossSnow
-    //     }));
-    // }
+    for (var x=0;x<50;x++)
+    {
+        fallItems.push(new Snow(two,{
+            xSpawnRange:[0,iwidth],
+            ySpawnRange:[-iheight*2,-10],
+            respawnHeight:iheight+10,
+            shape:crossSnow
+        }));
+    }
 
     two.bind("update",()=>{
         for (var x=0,l=fallItems.length;x<l;x++)

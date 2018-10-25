@@ -70,19 +70,19 @@ var snowDefaults={
 };
 
 //returns rectangular snow two shape
-function squareSnow()
+function squareSnow(size=5)
 {
-    var r=new Two.Rectangle(-10,-10,5,5);
+    var r=new Two.Rectangle(-10,-10,size,size);
     r.fill="white";
     r.stroke="transparent";
     return r;
 }
 
 //returns cross shaped snow two shape
-function crossSnow()
+function crossSnow(width=4,height=8)
 {
     var g=new Two.Group();
-    g.add(new Two.Rectangle(-10,-10,8,4),new Two.Rectangle(-10,-10,4,8));
+    g.add(new Two.Rectangle(-10,-10,height,width),new Two.Rectangle(-10,-10,width,height));
     g.fill="white";
     g.stroke="transparent";
     return g;
