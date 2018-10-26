@@ -36,14 +36,3 @@ function main()
 
     ReactDOM.render(React.createElement(Menu),document.querySelector(".menu"));
 }
-
-//random, inclusive
-function randint(min,max)
-{
-    return Math.floor(Math.random()*(max-min+1))+min;
-}
-
-function randfloat(min,max)
-{
-    return Math.random()*(max-min)+min;
-}

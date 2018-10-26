@@ -103,3 +103,14 @@ class fallSystem
         this.blow=this.blow?0:1;
     }
 }
+
+//random, inclusive
+function randint(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1))+min;
+}
+
+function randfloat(min,max)
+{
+    return Math.random()*(max-min)+min;
+}
