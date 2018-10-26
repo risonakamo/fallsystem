@@ -1,13 +1,16 @@
 /*Snow fall particle for use with mainFall.
-  Snow(Two two,Object options)
+  Snow(Two two,fallSystem fsystem,Object options)
   two: the two canvas
+  fsystem: the parent fall system
   options: view docs or the snowDefaults for possible options*/
 class Snow
 {
-    constructor(two,options={})
+    constructor(two,fsystem,options={})
     {
         this.options={...snowDefaults,...options};
         this.two=two;
+        this.fsystem=fsystem;
+        this.snow=1; //enable special snow only functionality
 
         this.theShape=this.options.shape();
         two.add(this.theShape);
@@ -33,6 +36,12 @@ class Snow
         this.theShape.translation.y+=this.fallSpeed;
         this.theShape.translation.x+=this.xSpeed;
 
+        if (this.fsystem.blow && this.theShape.translation.y>0 && this.snow)
+        {
+            this.fallSpeed+=.03;
+            this.xSpeed+=(this.theShape.translation.x-(this.two.width/2))*(this.theShape.translation.y/this.two.height)*.05;
+        }
+
         this.xAdjust--;
         if (this.xAdjust<=0)
         {
@@ -50,7 +59,10 @@ class Snow
             }
         }
 
-        if (this.theShape.translation.y>=this.two.height+this.options.respawnOffset)
+        //respawn when below certain y point. snow is optimised to despawn when out of X range as well
+        if (this.theShape.translation.y>=this.two.height+this.options.respawnOffset ||
+            (this.snow && (this.theShape.translation.x>this.two.width+this.options.respawnOffset ||
+            this.theShape.translation.x<-this.two.width-this.options.respawnOffset)))
         {
             this.respawn();
         }

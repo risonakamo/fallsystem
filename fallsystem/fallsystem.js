@@ -28,7 +28,7 @@ class fallSystem
 
             for (var y=0;y<currentParticle.particleAmount;y++)
             {
-                fallItemArray.push(new currentParticle.particle(two,currentParticle.particleOptions));
+                fallItemArray.push(new currentParticle.particle(two,this,currentParticle.particleOptions));
             }
 
             this.fallItems.push(fallItemArray);
@@ -94,5 +94,10 @@ class fallSystem
     toggleParticle(index)
     {
         this.fallItemDisable[index]=this.fallItemDisable[index]?0:1;
+    }
+
+    toggleBlow()
+    {
+        this.blow=this.blow?0:1;
     }
 }

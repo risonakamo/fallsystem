@@ -1,8 +1,9 @@
 class Rain extends Snow
 {
-    constructor(two,options={})
+    constructor(two,fsystem,options={})
     {
-        super(two,{...rainDefaults,...options});
+        super(two,fsystem,{...rainDefaults,...options});
+        this.snow=0;
     }
 }
 
