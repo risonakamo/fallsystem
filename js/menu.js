@@ -72,6 +72,12 @@ class Menu extends React.Component {
       src: "img/rain.png",
       onClick: () => {
         this.modeSwitch(0);
+      },
+      onMouseEnter: () => {
+        _stormsystem.toggleBlow();
+      },
+      onMouseLeave: () => {
+        _stormsystem.toggleBlow();
       }
     })));
   }

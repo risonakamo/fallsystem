@@ -72,7 +72,7 @@ class Snow
     {
         this.theShape.translation.set(
             randint(this.options.xSpawnOffset[0],this.two.width+this.options.xSpawnOffset[1]),
-            randint(-this.two.height*2,-1)
+            randint(-this.two.height*1.5,-1)
         );
         this.fallSpeed=randfloat(this.options.fallSpeedRange[0],this.options.fallSpeedRange[1]);
         this.theShape.scale=randfloat(this.options.scaleRange[0],this.options.scaleRange[1]);

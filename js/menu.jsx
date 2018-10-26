@@ -68,7 +68,10 @@ class Menu extends React.Component
 
       <div className={`switch ${switchClass}`}>
         <img className="snow" src="img/snow.png" onClick={()=>{this.modeSwitch(1)}}/>
-        <img className="rain" src="img/rain.png" onClick={()=>{this.modeSwitch(0)}}/>
+        <img className="rain" src="img/rain.png" onClick={()=>{this.modeSwitch(0)}}
+          onMouseEnter={()=>{_stormsystem.toggleBlow()}}
+          onMouseLeave={()=>{_stormsystem.toggleBlow()}}
+        />
       </div>
     </>);
   }
