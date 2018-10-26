@@ -1,3 +1,5 @@
+//rain is the same as snow except melted, and has different defaults.
+//and it says its not snow.
 class Rain extends Snow
 {
     constructor(two,fsystem,options={})
@@ -28,7 +30,6 @@ function rainSprite(swidth=2,sheight=15,segments=10)
     var g=new Two.Group();
     var segs=[new Two.Rectangle(-10,-10,swidth,sheight)];
     var newRec;
-    var opacityAdjust
     for (var x=1;x<=segments;x++)
     {
         newRec=new Two.Rectangle(-10-(swidth*x),-10-(sheight*x),swidth,sheight);

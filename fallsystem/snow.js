@@ -12,9 +12,12 @@ class Snow
         this.fsystem=fsystem;
         this.snow=1; //enable special snow only functionality
 
+        //create the Two shape and add it to the context
         this.theShape=this.options.shape();
         two.add(this.theShape);
 
+        //the interval of frames at which X is adjusted. randomly reset each adjustment, but
+        //is initialised here
         this.xAdjust=randint(this.options.driftPerFrames[0],this.options.driftPerFrames[1]);
         this.xSpeed=0;
 
@@ -42,12 +45,14 @@ class Snow
             this.xSpeed+=(this.theShape.translation.x-(this.two.width/2))*(this.theShape.translation.y/this.two.height)*.05;
         }
 
+        //every so frames, adjust the X speed slightly
         this.xAdjust--;
         if (this.xAdjust<=0)
         {
             this.xAdjust=randint(this.options.driftPerFrames[0],this.options.driftPerFrames[1]);
             this.xSpeed+=randfloat(this.options.driftVariation[0],this.options.driftVariation[1]);
 
+            //halve the X speed if it exceeds a certain number
             if (this.xSpeed>this.options.maxDrift)
             {
                 this.xSpeed=this.halfDrift;
@@ -68,6 +73,7 @@ class Snow
         }
     }
 
+    //spawn with randomised properties
     respawn()
     {
         this.theShape.translation.set(

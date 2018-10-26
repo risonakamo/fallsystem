@@ -96,6 +96,8 @@ class fallSystem
         this.fallItemDisable[index]=this.fallItemDisable[index]?0:1;
     }
 
+    //activate blow effect. particles have a reference to the fall system and
+    //particles that find this property relevant will react accordingly
     toggleBlow()
     {
         this.blow=this.blow?0:1;
