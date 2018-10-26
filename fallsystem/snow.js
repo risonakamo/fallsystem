@@ -29,6 +29,7 @@ class Snow
     //required update function
     updateSelf()
     {
+        //if out of sight and not supposed to respawn
         if (this.dontRespawn && this.theShape.translation.y<0)
         {
             this.dead=1;
@@ -39,6 +40,7 @@ class Snow
         this.theShape.translation.y+=this.fallSpeed;
         this.theShape.translation.x+=this.xSpeed;
 
+        //if a snow and blow is active
         if (this.fsystem.blow && this.theShape.translation.y>0 && this.snow)
         {
             this.fallSpeed+=.03;
