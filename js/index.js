@@ -34,14 +34,7 @@ function main()
 
     two.play();
 
-    menuOps();
-}
-
-function menuOps()
-{
-    document.querySelector(".playpause").addEventListener("click",()=>{
-        _stormsystem.playPause();
-    });
+    ReactDOM.render(React.createElement(Menu),document.querySelector(".menu"));
 }
 
 //random, inclusive

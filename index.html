@@ -5,10 +5,16 @@
     <meta charset="UTF-8">
     <title>Fall System Example</title>
 
+    <meta name="viewport" content="width=520">
+    <meta name="theme-color" content="#3f3d47">
+
     <link rel="stylesheet" type="text/css" href="index.css">
 
+    <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/two.js/0.6.0/two.js"></script>
 
+    <script src="js/menu.js"></script>
     <script src="js/snow.js"></script>
     <script src="js/rain.js"></script>
     <script src="js/fallsystem.js"></script>
@@ -16,15 +22,9 @@
   </head>
 
   <body>
-    <!-- <canvas class="game" width="400" height="400"></canvas> -->
     <div class="game"></div>
     <div class="menu">
-      <img class="playpause" src="img/pause.png">
-      <img src="img/switchtext.png">
-      <div class="switch">
-        <img src="img/snow.png">
-        <img src="img/rain.png">
-      </div>
+
     </div>
   </body>
 </html>

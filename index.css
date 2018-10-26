@@ -1,13 +1,12 @@
 @charset "UTF-8";
-html {
-  height: 100%;
-  width: 100%;
-}
 body {
   height: 100%;
   width: 100%;
   margin: 0;
   background-color: #3f3d47;
+}
+body.light {
+  background-color: #ebebeb;
 }
 .game {
   pointer-events: none;
@@ -30,7 +29,14 @@ body {
 .menu .switch img {
   display: inline-block;
 }
-.menu .switch img:hover {
+.menu .switch .rain:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.menu .switch.dark .rain:hover {
+  cursor: default;
+}
+.menu .switch.dark .snow:hover {
   cursor: pointer;
   opacity: 0.6;
 }

@@ -6,6 +6,11 @@ body
     width: 100%;
     margin: 0;
     background-color: #3f3d47;
+
+    &.light
+    {
+        background-color: #ebebeb;
+    }
 }
 
 .game
@@ -27,10 +32,15 @@ body
         margin: 13px;
     }
 
-    .playpause:hover
+    .basicHover()
     {
         cursor: pointer;
         opacity: .6;
+    }
+
+    .playpause:hover
+    {
+        .basicHover();
     }
 
     .switch
@@ -38,11 +48,23 @@ body
         img
         {
             display: inline-block;
+        }
 
-            &:hover
+        .rain:hover
+        {
+            .basicHover();
+        }
+
+        &.dark
+        {
+            .rain:hover
             {
-                cursor: pointer;
-                opacity: .6;
+                cursor: default;
+            }
+
+            .snow:hover
+            {
+                .basicHover();
             }
         }
     }
