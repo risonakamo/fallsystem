@@ -18,6 +18,8 @@ class fallSystem
 
         var currentParticle;
         var fallItemArray;
+
+        //instantiate all particles according to configs
         for (var x=0;x<particles.length;x++)
         {
             this.fallItemDisable[x]=0;
@@ -50,7 +52,7 @@ class fallSystem
     //frame update
     update()
     {
-        //also during this loop, check if all particles report dead
+        //also during this loop, check if all particles report dead (out of Two canvas space)
         var allDead;
         for (var x=0;x<this.fallItems.length;x++)
         {
@@ -70,7 +72,7 @@ class fallSystem
                 }
             }
 
-            //if all particles are not moving, disable the group for speed
+            //if all particles are dead, disable the particle group
             if (allDead)
             {
                 this.fallItemDisable[x]=1;

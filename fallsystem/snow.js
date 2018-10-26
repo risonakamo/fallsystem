@@ -20,6 +20,7 @@ class Snow
         this.respawn();
     }
 
+    //required update function
     updateSelf()
     {
         if (this.dontRespawn && this.theShape.translation.y<0)

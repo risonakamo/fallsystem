@@ -32,14 +32,7 @@ function rainSprite(swidth=2,sheight=15,segments=10)
     {
         newRec=new Two.Rectangle(-10-(swidth*x),-10-(sheight*x),swidth,sheight);
 
-        opacityAdjust=x-0;
-
-        if (opacityAdjust<=0)
-        {
-            opacityAdjust=1;
-        }
-
-        newRec.opacity=1/opacityAdjust;
+        newRec.opacity=1/x;
 
         segs.push(newRec);
     }
