@@ -1,7 +1,30 @@
 @charset "UTF-8";
-
-body
-{
-    margin: 0;
-    background-color: #3d3a46;
+body {
+  margin: 0;
+  background-color: #3f3d47;
+}
+.game {
+  pointer-events: none;
+}
+.menu {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.menu img {
+  display: block;
+  margin: 13px;
+}
+.menu .playpause:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+.menu .switch img {
+  display: inline-block;
+}
+.menu .switch img:hover {
+  cursor: pointer;
+  opacity: 0.6;
 }
