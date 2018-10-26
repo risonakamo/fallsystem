@@ -7,7 +7,7 @@ Fall System is a super simple particle system usable with [Two.js](https://two.j
 Fall System being used with two Particle classes, Snow and Rain, with a pixel art design:
 https://risonakamo.github.io/fallsystem.
 
-**To run on your own:** All files pertaining to the system itself can be located in the fallsystem folder. Simply include the js file(s) on an html page. Two.js is required.
+**To run on your own:** All files pertaining to the system itself can be located in the fallsystem folder. Simply include the js file(s) on an html page. Two.js should also be present.
 - fallsystem.js
 - snow.js
 - rain.js
@@ -19,7 +19,7 @@ Fall System takes given Particle classes with options and updates them with Two.
 ```javascript
     var fsystem=new fallSystem(two,particleConfigs);
 ```
-- two: Two context. [Two.js](https://two.js.org/)'s documentation is help in understand usage of Two.
+- two: Two context. [Two.js](https://two.js.org/)'s documentation can help with understanding usage of Two.
 - particleConfigs: **Array** of **one or more** particleConfig Objects each with the following properties:
     - particleConfig.particle: a Particle class
     - particleConfig.particleOptions: a generic Object to be given to the Particle class.
@@ -86,3 +86,4 @@ Snow.js and Rain.js additionally include shape functions which produce Two.js sp
 #### additional notes
 - "snow blowing" occurs when hovering over the rain button
 - when switching particles it may seem like the other particles have not stopped yet. The other particles do indeed stop *spawning*, but do not immediately disappear from the page as suddenly disappearing does not look as good. Instead they continue to float downward before disappearing.
+- less and are were used for the UI but are not a part of or required for Fall System.
